@@ -1,0 +1,17 @@
+.containerHeader{
+  color: var(--gray-800);
+
+  div {
+    width: 100%;
+    max-width: 980px;
+    margin: auto;
+    margin-top: 1rem;
+    padding: 1rem;
+    display: grid;
+    align-items: center;
+    h1 {
+      font-weight: 400;
+      
+    }
+  }
+}
