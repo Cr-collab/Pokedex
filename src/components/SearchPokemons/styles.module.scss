@@ -1,0 +1,60 @@
+.container {
+  background: var(--gray-900);
+  height: 12.5rem;
+}
+
+.containerBox {
+  margin: auto;
+  max-width: 100%;
+  width: 980px;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchContainerBox {
+  p {
+    font-size: 2rem;
+  }
+
+  input {
+    padding: 0.5rem;
+    width: 300px;
+  }
+
+  button {
+    background: var(--yellow-400);
+    color: var(--white);
+    border: 0;
+    padding: 0.7rem;
+    border-radius: 0.2rem;
+
+    &:hover {
+      background-color: var(--yellow-500);
+    }
+  }
+
+  span {
+    display: block;
+    margin-top: 1rem;
+    width: 90%;
+    font-size: 1rem;
+  }
+}
+
+.containerMns {
+  background: #4dad5b;
+  padding: 1.5rem;
+  border-radius: 0.8rem;
+  font-size: 1.3rem;
+
+  &:hover {
+    background: var(--green);
+  }
+  p {
+    font-weight: 300;
+  }
+}
