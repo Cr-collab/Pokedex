@@ -1,0 +1,44 @@
+.ulNavigation {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 610px;
+  margin: 0.5rem auto 0.5rem auto;
+}
+
+.default {
+  height: 40px;
+  width: 40px;
+  border: 1px solid black;
+  background-image: linear-gradient(red 10%, black 59%, white 60%);
+  border-radius: 2rem;
+  color: white;
+  font-weight: bold;
+  justify-self: center;
+}
+
+.activeItem {
+  height: 40px;
+  width: 40px;
+  border: 1px solid black;
+  background-image: linear-gradient(blue 10%, black 50%, white 51%);
+  border-radius: 2rem;
+  color: aqua;
+  font-weight: bold;
+}
+
+.preNext {
+  height: 40px;
+  width: 40px;
+  border: 1px solid black;
+  background-image: linear-gradient(black 10%, black 50%, white 51%);
+  border-radius: 2rem;
+  color: yellow;
+  font-weight: bold;
+
+  &:disabled{
+    background: #ccc;
+  }
+}
