@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { Type } from "../Type";
 import styles from "./styles.module.scss";
 
@@ -18,8 +19,9 @@ interface CardPokemonProps {
 }
 
 export default function CardPokemon({ pokemon }: CardPokemonProps) {
+  const router = useRouter()
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={() => router.push(`pokemon/${pokemon.id}`) }>
       <img src={pokemon.img} />
 
       <p className={styles.id}> Nº {String(pokemon.id).padStart(3, "0")} </p>

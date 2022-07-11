@@ -13,6 +13,7 @@ interface GetPokemonsContextProps {
   dataPokemons: DataPokemon;
   offset: number;
   getPokemons: (number) => void;
+  getPokemon: (pokemon: string ) => void;
   setOffset: Dispatch<SetStateAction<number>>;
 }
 
@@ -51,6 +52,7 @@ interface result {
 }
 
 export function GetPokemonsProvider({ children }: GetPokemonsProviderProps) {
+
   const [dataPokemons, setDataPokemons] = useState<DataPokemon>();
   const [offset, setOffset] = useState<number>(0);
 
@@ -76,13 +78,39 @@ export function GetPokemonsProvider({ children }: GetPokemonsProviderProps) {
     });
   }
 
+  async function getPokemon(pokemon: string ) {
+
+    let { data } = await api.get(`v2/pokemon/${pokemon.toLocaleLowerCase()}`);
+    let pokemons = [];
+
+    
+      pokemons.push({
+        name: data.name[0].toUpperCase() + data.name.slice(1),
+        img: data.sprites.other.dream_world.front_default,
+        types: data.types,
+        id: data.id,
+      });
+  
+    setDataPokemons({
+      count: 0,
+      next: "",
+      pokemons: pokemons,
+      previous: "",
+    });
+  }
+
+
+
+
+
+
   useEffect(() => {
     getPokemons();
   }, []);
 
   return (
     <GetPokemonsContext.Provider
-      value={{ dataPokemons, getPokemons, offset, setOffset }}
+      value={{ dataPokemons, getPokemons, getPokemon,offset, setOffset }}
     >
       {children}
     </GetPokemonsContext.Provider>

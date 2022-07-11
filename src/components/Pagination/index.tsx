@@ -60,7 +60,7 @@ export function Pagination({
             onClick={() => {
               onPageChange(1);
             }}
-            className={styles.preNext}
+            className={styles.default}
           >
             1
           </button>
@@ -92,7 +92,7 @@ export function Pagination({
             onClick={() => {
               onPageChange(58);
             }}
-            className={styles.preNext}
+            className={styles.default}
           >
             58
           </button>

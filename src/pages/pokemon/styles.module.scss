@@ -1,0 +1,78 @@
+.main {
+
+}
+.containerButton {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+
+  button {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background: #a4a4a4;
+    color: white;
+    padding: 1rem;
+    border: 0;
+
+    &:hover {
+      background: #30a7d7;
+    }
+
+    span {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    p {
+      color: var(--gray-800);
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+
+  .icon {
+    margin-left: 8rem;
+  }
+}
+
+.containerInfo {
+  color: black;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+
+  img {
+    width: 100%;
+  }
+
+  > div {
+
+    > p {
+      font-size:  1.2rem;
+      margin: 1rem;
+    }
+
+    > div {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap : 1rem;
+     background-color: #30a7d7;
+     margin: 1rem;
+     border-radius: 1rem;
+     padding: 1rem;
+    }
+  }
+}
+
+.title {
+  text-align: center;
+  font-size: 3rem;
+  color: black;
+  margin-bottom: 2rem;
+}
