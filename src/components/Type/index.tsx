@@ -5,20 +5,23 @@ import { typesColor } from "../../utils/types";
 import styles from "./styles.module.scss";
 
 type TypeProps = {
-  slot: number;
+  height?: string;
+  width?: string;
+  slot?: number;
+  lineHeight?: string;
   type: {
     name: string;
   };
 };
 
-export function Type({ type }: TypeProps) {
+export function Type({ type, slot, height, width, lineHeight }: TypeProps) {
   let isGradient =
     type.name === "dragon" || type.name === "ground" || type.name === "flying";
 
   return (
     <div
       className={styles.container}
-      style={boxTypeStyle({ isGradient, type })}
+      style={boxTypeStyle({ isGradient, type, height, width, lineHeight })}
     >
       {type.name}
     </div>

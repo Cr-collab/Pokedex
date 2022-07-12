@@ -1,0 +1,20 @@
+export default  {
+  bug: 7,
+  dragon :  16,
+  fairy: 18,
+  fire: 10,
+  ghost: 8,
+  ground:  5,
+  normal: 1,
+  psychic: 14,
+  steel: 9,
+  dark: 17,
+  electric: 13,
+  fighting: 2,
+  flying: 3,
+  grass: 12,
+  ice: 15,
+  poison: 4,
+  rock: 6,
+  water: 11
+}

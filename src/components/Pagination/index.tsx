@@ -36,7 +36,7 @@ export function Pagination({
     getPokemons((page - 1) * limit);
     setOffset((page - 1) * limit);
     (page >= 6) ? setPageOne(true) : setPageOne(false);
-    (page <= 54) ? setLastPage(true) : setLastPage(false);
+    (page <= 57) ? setLastPage(true) : setLastPage(false);
   }
 
   return (

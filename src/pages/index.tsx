@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { Button } from "../components/Button";
 import CardPokemon from "../components/CardPokemon";
-import { Footer } from "../components/Footer";
 import { Pagination } from "../components/Pagination";
 import { SearchPokemons } from "../components/SearchPokemons";
 import { useGetPokemons } from "../hooks/useGetPokemons";
@@ -16,6 +15,7 @@ export default function Home() {
     <main className={styles.main}>
       <SearchPokemons />
       <div className={styles.container}>
+        
         {dataPokemons?.pokemons?.map((pokemon) => (
           <CardPokemon  pokemon={pokemon} key={pokemon.name} />
         ))}
@@ -33,7 +33,12 @@ export default function Home() {
         )
        }
 
-        <Footer/>
+       {
+        dataPokemons?.pokemons.length === 1 && (
+          <Button/>
+        )
+       }
+
     </main>
   );
 }

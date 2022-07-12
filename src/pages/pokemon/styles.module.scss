@@ -1,40 +1,13 @@
 .main {
-
-}
-.containerButton {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-
-  button {
+  margin-top: 2rem;
+  > div {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    background: #a4a4a4;
-    color: white;
-    padding: 1rem;
-    border: 0;
+    > button {
+      margin-top: 2rem;
+      margin-right: 1rem;
 
-    &:hover {
-      background: #30a7d7;
+      justify-self: end;
     }
-
-    span {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    p {
-      color: var(--gray-800);
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-  }
-
-  .icon {
-    margin-left: 8rem;
   }
 }
 
@@ -52,20 +25,9 @@
   }
 
   > div {
-
     > p {
-      font-size:  1.2rem;
+      font-size: 1.2rem;
       margin: 1rem;
-    }
-
-    > div {
-     display: grid;
-     grid-template-columns: 1fr 1fr;
-     gap : 1rem;
-     background-color: #30a7d7;
-     margin: 1rem;
-     border-radius: 1rem;
-     padding: 1rem;
     }
   }
 }
@@ -75,4 +37,13 @@
   font-size: 3rem;
   color: black;
   margin-bottom: 2rem;
+}
+
+.containerType {
+  margin-top: 1rem;
+  p {
+    margin-left: 1rem;
+
+    margin-bottom: 1rem;
+  }
 }

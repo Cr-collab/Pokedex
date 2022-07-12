@@ -20,6 +20,7 @@ interface CardPokemonProps {
 
 export default function CardPokemon({ pokemon }: CardPokemonProps) {
   const router = useRouter()
+  console.log(pokemon.img)
   return (
     <div className={styles.container} onClick={() => router.push(`pokemon/${pokemon.id}`) }>
       <img src={pokemon.img} />

@@ -61,11 +61,20 @@ export function GetPokemonsProvider({ children }: GetPokemonsProviderProps) {
     let results: result[] = data.results;
     let pokemons = [];
 
+   
+
     for await (const result of results) {
       let response = await api.get(`${result.url}`);
+
+      let image = "";
+      if (response.data.sprites.other["official-artwork"].front_default === null) {
+        image = "/assets/poke.png";
+      } else {
+        image = response.data.sprites.other["official-artwork"].front_default;
+      }
       pokemons.push({
         name: result.name[0].toUpperCase() + result.name.slice(1),
-        img: response.data.sprites.other.dream_world.front_default,
+        img: image,
         types: response.data.types,
         id: response.data.id,
       });
@@ -83,10 +92,15 @@ export function GetPokemonsProvider({ children }: GetPokemonsProviderProps) {
     let { data } = await api.get(`v2/pokemon/${pokemon.toLocaleLowerCase()}`);
     let pokemons = [];
 
-    
+    let image = "";
+    if (data.sprites.other["official-artwork"].front_default === null) {
+      image = "/assets/poke.png";
+    } else {
+      image = data.sprites.other["official-artwork"].front_default;
+    }
       pokemons.push({
         name: data.name[0].toUpperCase() + data.name.slice(1),
-        img: data.sprites.other.dream_world.front_default,
+        img: image,
         types: data.types,
         id: data.id,
       });

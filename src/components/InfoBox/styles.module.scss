@@ -1,0 +1,15 @@
+.container {
+  display: grid;
+  gap : 1rem;
+  background-color: #30a7d7;
+  margin: 1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  p {
+    color: white;
+  }
+
+   span {
+    font-weight: bold;
+   }
+ }

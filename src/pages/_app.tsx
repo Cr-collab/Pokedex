@@ -1,4 +1,5 @@
 import "../../styles/global.scss";
+import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { GetPokemonsProvider } from "../hooks/useGetPokemons";
 
@@ -7,6 +8,7 @@ function MyApp({ Component, pageProps }) {
     <GetPokemonsProvider>
       <Header />
       <Component {...pageProps} />
+      <Footer/>
     </GetPokemonsProvider>
   );
 }

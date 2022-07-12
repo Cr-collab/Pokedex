@@ -1,59 +1,98 @@
-import { info } from "console";
-import { GetServerSideProps, GetStaticProps } from "next";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { BsFillArrowLeftCircleFill } from "react-icons/bs";
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import { useGetPokemons } from "../../hooks/useGetPokemons";
+import { GetServerSideProps } from "next";
+
+import { Button } from "../../components/Button";
+import { InfoBox } from "../../components/InfoBox";
+import { Type } from "../../components/Type";
 import { api } from "../../services/api";
+import typeId from "../../utils/typeId";
 import styles from "./styles.module.scss";
 
-export default function InfoPokemon({info}) {
-  console.log(info)
+interface InfoPokemonProps {
+  info: {
+    name: string;
+    img: string;
+    types: Type[];
+    id: string;
+    height: number;
+    weight: number;
+    ability: string;
+    description: string;
+    weaknesses: Weaknesses[];
+  };
+}
+
+type Type = {
+  slot: number;
+  type: {
+    name: string;
+  };
+};
+
+type Weaknesses = {
+  name: string;
+};
+
+interface Info {
+  name: string;
+  img: string;
+  types: Type[];
+  id: string;
+  height: number;
+  weight: number;
+  ability: string;
+  description: string;
+  weaknesses: Weaknesses[];
+}
+
+export default function InfoPokemon({ info }: InfoPokemonProps) {
   return (
     <main className={styles.main}>
       <div>
-        {/* <div className={styles.containerButton}>
-          <button
-            style={{
-              borderRadius: "2rem 0rem 0rem 10rem",
-            }}
-          >
-            <BsFillArrowLeftCircleFill size={30} className={styles.icon} />
-            <span>Nº {905}</span>
-            <p> Enamorus</p>
-          </button>
-          <button
-            style={{
-              borderRadius: "0rem 2rem 10rem 0rem",
-            }}
-          >
-            <p> Ivysaur </p>
-            <span> Nº 00{2} </span>
-            <BsFillArrowRightCircleFill size={30} />
-          </button>
-        </div> */}
-        <p className={styles.title}>{info?.name} Nº{info.id} </p>
+        <p className={styles.title}>
+          {info?.name} Nº{info.id}{" "}
+        </p>
         <div className={styles.containerInfo}>
-          <img
-            src={info.img}
-            alt={info.name}
-          />
+          <img src={info.img} alt={info.name} />
 
           <div>
-            <p>
-              { info.description}
-            </p>
+            <p>{info.description}</p>
+
+            <InfoBox
+              ability={info.ability}
+              height={info.height}
+              weight={info.weight}
+            />
 
             <div>
-              <p>Altura : {parseFloat(info.height)} m</p>
+              <div className={styles.containerType}>
+                <p>Type</p>
+                {info.types.map((type) => (
+                  <Type
+                    type={type.type}
+                    key={type.slot}
+                    lineHeight="30px"
+                    height="30px"
+                    width="100px"
+                  />
+                ))}
+              </div>
 
-              <p>peso : {info.weight} kg</p>
-
-              <p>Habilidades : {info.abilities[0].ability.name}</p>
+              <div className={styles.containerType}>
+                <p>Weakness</p>
+                {info.weaknesses?.map((type, index) => (
+                  <Type
+                    type={type}
+                    key={index}
+                    lineHeight="30px"
+                    height="30px"
+                    width="100px"
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
+        <Button />
       </div>
     </main>
   );
@@ -61,20 +100,40 @@ export default function InfoPokemon({info}) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.params;
-  let { data  } = await api.get(`v2/pokemon/${id}`);
-  let { data : dataDescription  } = await api.get(`v2/pokemon-species/${id}`);
-   console.log()
-  let info = {
-    name: data.name[0].toUpperCase() + data.name.slice(1),
-    img: data.sprites.other.dream_world.front_default,
-    types: data.types,
-    id: String(data.id).padStart(3, '0'),
-    height: data.height,
-    weight: data.weight,
-    abilities: data.abilities,
-    description: dataDescription.flavor_text_entries[9].flavor_text
-  };
 
+  let { data } = await api.get(`v2/pokemon/${id}`);
+  let description = "";
+  try {
+    let { data: dataDescription } = await api.get(`v2/pokemon-species/${id}`);
+    description = dataDescription.flavor_text_entries.filter((value) => {
+      return value.language.name === "en";
+    })[0].flavor_text;
+  } catch (error) {
+    description = "Não tem decrição";
+  }
+
+  let { data: dataTypes } = await api.get(
+    `v2/type/${typeId[data.types[0].type.name]}`
+  );
+  let weaknesses = dataTypes.damage_relations.double_damage_from;
+  let image = "";
+  if (data.sprites.other["official-artwork"].front_default === null) {
+    image = "/assets/poke.png";
+  } else {
+    image = data.sprites.other["official-artwork"].front_default;
+  }
+
+  let info: Info = {
+    name: data.name[0].toUpperCase() + data.name.slice(1),
+    img: image,
+    types: data.types,
+    id: String(data.id).padStart(3, "0"),
+    height: data.height / 10,
+    weight: data.weight / 10,
+    ability: data.abilities[0].ability.name,
+    description: description,
+    weaknesses: weaknesses,
+  };
 
   return {
     props: {
