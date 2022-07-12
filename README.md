@@ -1,8 +1,12 @@
 ## Sobre a Pokedex
 
-Primiero , realizar um ```bash git clone https://github.com/Cr-collab/Pokedex.git ```
+Primiero , realizar um ```bash 
+git clone https://github.com/Cr-collab/Pokedex.git 
+```
 
-Segundo ``` bash cd  Pokedex ```
+Segundo ```bash 
+cd  Pokedex 
+```
 
 Terceiro, rode o  servidor de desenvolvimento:
 
