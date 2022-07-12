@@ -23,11 +23,7 @@ export function SearchPokemons() {
             {" "}
             <RiSearchLine size={20} />{" "}
           </button>
-          <span>
-            {" "}
-            Use a pesquisa avançada para explorar Pokémon por tipo, fraqueza,
-            habilidade e mais!{" "}
-          </span>
+        
         </div>
 
         <div className={styles.containerMns}>
