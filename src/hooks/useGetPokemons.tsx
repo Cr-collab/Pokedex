@@ -7,7 +7,7 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-import { FALSE } from "sass";
+import { toast } from "react-toastify";
 import { api } from "../services/api";
 
 interface GetPokemonsContextProps {
@@ -94,30 +94,34 @@ export function GetPokemonsProvider({ children }: GetPokemonsProviderProps) {
 
   async function getPokemon(pokemon: string ) {
     setLoading(false)
+    try {
 
-    let { data } = await api.get(`v2/pokemon/${pokemon.toLocaleLowerCase()}`);
-    let pokemons = [];
-
-    let image = "";
-    if (data.sprites.other["official-artwork"].front_default === null) {
-      image = "/assets/poke.png";
-    } else {
-      image = data.sprites.other["official-artwork"].front_default;
-    }
-      pokemons.push({
-        name: data.name[0].toUpperCase() + data.name.slice(1),
-        img: image,
-        types: data.types,
-        id: data.id,
+      let { data } = await api.get(`v2/pokemon/${pokemon.toLocaleLowerCase()}`);
+      let pokemons = [];
+  
+      let image = "";
+      if (data.sprites.other["official-artwork"].front_default === null) {
+        image = "/assets/poke.png";
+      } else {
+        image = data.sprites.other["official-artwork"].front_default;
+      }
+        pokemons.push({
+          name: data.name[0].toUpperCase() + data.name.slice(1),
+          img: image,
+          types: data.types,
+          id: data.id,
+        });
+    
+      setDataPokemons({
+        count: 0,
+        next: "",
+        pokemons: pokemons,
+        previous: "",
       });
   
-    setDataPokemons({
-      count: 0,
-      next: "",
-      pokemons: pokemons,
-      previous: "",
-    });
-
+    }catch (e) {
+        toast('Pokemon not found')
+    }
     setLoading(true);
   }
 
