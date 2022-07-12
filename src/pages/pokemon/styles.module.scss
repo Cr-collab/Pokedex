@@ -1,45 +1,60 @@
 .main {
-  margin-top: 2rem;
-  > div {
-    display: grid;
-    > button {
-      margin-top: 2rem;
-      margin-right: 1rem;
-
-      justify-self: end;
-    }
-  }
-}
-
-.containerInfo {
-  color: black;
   display: grid;
+  color: black;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100px 150px 300px 100px 100px 100px;
+  grid-template-areas:
+    "title title title"
+    "img description description"
+    "img info info"
+    "img type type"
+    "img weaknesses weaknesses"
+    "btn btn btn";
+
   justify-content: center;
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
+  align-items: center;
+
+  margin-top: 2rem;
 
   img {
+    grid-area: img;
     width: 100%;
   }
 
-  > div {
-    > p {
-      font-size: 1.2rem;
-      margin: 1rem;
-    }
+  > button {
+    grid-area: btn;
+    justify-self: end;
+    margin-top: 2rem;
+    margin-right: 1rem;
   }
 }
 
 .title {
+  grid-area: title;
   text-align: center;
   font-size: 3rem;
   color: black;
   margin-bottom: 2rem;
 }
 
+.description {
+  grid-area: description;
+  font-size: 1.2rem;
+  margin: 1rem;
+}
+
 .containerType {
+  grid-area: type;
+  margin-top: 1rem;
+  p {
+    margin-left: 1rem;
+
+    margin-bottom: 1rem;
+  }
+}
+
+.containerWeakness {
+  grid-area: weaknesses;
   margin-top: 1rem;
   p {
     margin-left: 1rem;

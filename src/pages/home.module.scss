@@ -5,14 +5,12 @@
   width: 100%;
   max-width: 900px;
   margin: 5rem auto 5rem auto;
-
 }
 
 .main {
   display: grid;
-  > button{
+  > button {
     justify-self: end;
     margin-right: 2rem;
   }
-  
 }

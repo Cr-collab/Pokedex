@@ -1,7 +1,4 @@
-import { linearGradient } from "polished";
-import { Styles } from "polished/lib/types/style";
 import { boxTypeStyle } from "../../utils/boxTypeStyle";
-import { typesColor } from "../../utils/types";
 import styles from "./styles.module.scss";
 
 type TypeProps = {
@@ -14,7 +11,7 @@ type TypeProps = {
   };
 };
 
-export function Type({ type, slot, height, width, lineHeight }: TypeProps) {
+export function Type({ type, height, width, lineHeight }: TypeProps) {
   let isGradient =
     type.name === "dragon" || type.name === "ground" || type.name === "flying";
 

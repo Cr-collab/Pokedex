@@ -12,17 +12,16 @@ interface PaginationProps {
 }
 
 const maxItens = 9;
-// maximo de botões
 const maxLeft = (maxItens - 1) / 2;
-// maximo de botões na esquerda
 
 export function Pagination({
   limit,
   offset,
   totalItens,
   setOffset,
-  storeDataAll
+  storeDataAll,
 }: PaginationProps) {
+  
   const currentPage = offset ? offset / limit + 1 : 1;
 
   const totalPages = Math.ceil(totalItens / limit);
@@ -60,8 +59,7 @@ export function Pagination({
                     page === currentPage ? styles.activeItem : styles.default
                   }
                 >
-                  {" "}
-                  {page}{" "}
+                  {page}
                 </button>
               </li>
             )

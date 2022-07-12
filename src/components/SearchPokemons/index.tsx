@@ -1,9 +1,9 @@
-import styles from "./styles.module.scss";
-import { RiSearchLine } from "react-icons/ri";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { api } from "../../services/api";
+import { useState } from "react";
 import { useGetPokemons } from "../../hooks/useGetPokemons";
+
+import styles from "./styles.module.scss";
+
+import { RiSearchLine } from "react-icons/ri";
 
 export function SearchPokemons() {
   const { handleDataPokemon } = useGetPokemons();
