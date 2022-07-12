@@ -5,11 +5,13 @@
   max-width: 201.77px;
   transform: translateX(0) ;
   grid-area: "card";
+  cursor: pointer;
   
   &:hover,
   &:focus {
+    border: 1px solid black;
     transition: transform 2s;
-    transform: translateX(5px) scale(1.0);
+    transform: translateX(5px) scale(1.05);
   }
 
   height: 100%;
