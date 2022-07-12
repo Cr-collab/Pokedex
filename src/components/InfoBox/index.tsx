@@ -14,7 +14,7 @@ export function InfoBox({ ability, height, weight }: InfoBoxProps) {
       <p>Peso </p>
       <span>{weight} kg</span>
 
-      <p>Habilidades</p>
+      <p>Abilities</p>
       <span>{ability}</span>
     </div>
   );

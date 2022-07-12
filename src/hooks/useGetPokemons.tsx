@@ -7,6 +7,7 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { FALSE } from "sass";
 import { api } from "../services/api";
 
 interface GetPokemonsContextProps {
@@ -15,6 +16,7 @@ interface GetPokemonsContextProps {
   getPokemons: (number) => void;
   getPokemon: (pokemon: string ) => void;
   setOffset: Dispatch<SetStateAction<number>>;
+  loading: boolean;
 }
 
 type Type = {
@@ -55,8 +57,10 @@ export function GetPokemonsProvider({ children }: GetPokemonsProviderProps) {
 
   const [dataPokemons, setDataPokemons] = useState<DataPokemon>();
   const [offset, setOffset] = useState<number>(0);
+  const [loading , setLoading] = useState<boolean>(false);
 
   async function getPokemons(offset: number = 0) {
+    setLoading(false)
     let { data } = await api.get(`v2/pokemon/?limit=20&offset=${offset}`);
     let results: result[] = data.results;
     let pokemons = [];
@@ -85,9 +89,11 @@ export function GetPokemonsProvider({ children }: GetPokemonsProviderProps) {
       pokemons: pokemons,
       previous: data.previous,
     });
+    setLoading(true)
   }
 
   async function getPokemon(pokemon: string ) {
+    setLoading(false)
 
     let { data } = await api.get(`v2/pokemon/${pokemon.toLocaleLowerCase()}`);
     let pokemons = [];
@@ -111,6 +117,8 @@ export function GetPokemonsProvider({ children }: GetPokemonsProviderProps) {
       pokemons: pokemons,
       previous: "",
     });
+
+    setLoading(true);
   }
 
 
@@ -124,7 +132,7 @@ export function GetPokemonsProvider({ children }: GetPokemonsProviderProps) {
 
   return (
     <GetPokemonsContext.Provider
-      value={{ dataPokemons, getPokemons, getPokemon,offset, setOffset }}
+      value={{ dataPokemons, getPokemons, getPokemon,offset, setOffset , loading}}
     >
       {children}
     </GetPokemonsContext.Provider>

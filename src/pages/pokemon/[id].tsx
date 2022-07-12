@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import { Button } from "../../components/Button";
 import { InfoBox } from "../../components/InfoBox";
 import { Type } from "../../components/Type";
+import { useGetPokemons } from "../../hooks/useGetPokemons";
 import { api } from "../../services/api";
 import typeId from "../../utils/typeId";
 import styles from "./styles.module.scss";
@@ -45,55 +46,60 @@ interface Info {
 }
 
 export default function InfoPokemon({ info }: InfoPokemonProps) {
+  const {loading} =  useGetPokemons()
   return (
     <main className={styles.main}>
-      <div>
-        <p className={styles.title}>
-          {info?.name} Nº{info.id}{" "}
-        </p>
-        <div className={styles.containerInfo}>
-          <img src={info.img} alt={info.name} />
-
-          <div>
-            <p>{info.description}</p>
-
-            <InfoBox
-              ability={info.ability}
-              height={info.height}
-              weight={info.weight}
-            />
+      {loading ? (
+        <div>
+          <p className={styles.title}>
+            {info?.name} Nº{info.id}{" "}
+          </p>
+          <div className={styles.containerInfo}>
+            <img src={info.img} alt={info.name} />
 
             <div>
-              <div className={styles.containerType}>
-                <p>Type</p>
-                {info.types.map((type) => (
-                  <Type
-                    type={type.type}
-                    key={type.slot}
-                    lineHeight="30px"
-                    height="30px"
-                    width="100px"
-                  />
-                ))}
-              </div>
+              <p>{info.description}</p>
 
-              <div className={styles.containerType}>
-                <p>Weakness</p>
-                {info.weaknesses?.map((type, index) => (
-                  <Type
-                    type={type}
-                    key={index}
-                    lineHeight="30px"
-                    height="30px"
-                    width="100px"
-                  />
-                ))}
+              <InfoBox
+                ability={info.ability}
+                height={info.height}
+                weight={info.weight}
+              />
+
+              <div>
+                <div className={styles.containerType}>
+                  <p>Type</p>
+                  {info.types.map((type) => (
+                    <Type
+                      type={type.type}
+                      key={type.slot}
+                      lineHeight="30px"
+                      height="30px"
+                      width="100px"
+                    />
+                  ))}
+                </div>
+
+                <div className={styles.containerType}>
+                  <p>Weakness</p>
+                  {info.weaknesses?.map((type, index) => (
+                    <Type
+                      type={type}
+                      key={index}
+                      lineHeight="30px"
+                      height="30px"
+                      width="100px"
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
+          <Button />
         </div>
-        <Button />
-      </div>
+      ) : (
+        <img width="100%" src="/assets/getting_ready.gif" />
+      )}
     </main>
   );
 }
@@ -109,7 +115,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       return value.language.name === "en";
     })[0].flavor_text;
   } catch (error) {
-    description = "Não tem decrição";
+    description = "Description not provided by pokemon api.";
   }
 
   let { data: dataTypes } = await api.get(
