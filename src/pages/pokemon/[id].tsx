@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 
 import { Button } from "../../components/Button";
 import { InfoBox } from "../../components/InfoBox";
+import { Loading } from "../../components/Loading";
 import { Type } from "../../components/Type";
 import { useGetPokemons } from "../../hooks/useGetPokemons";
 import { api } from "../../services/api";
@@ -49,8 +50,8 @@ export default function InfoPokemon({ info }: InfoPokemonProps) {
   const {loading} =  useGetPokemons()
   return (
     <main className={styles.main}>
-      {loading ? (
-        <div>
+    <Loading isLoading={loading}>
+    <div>
           <p className={styles.title}>
             {info?.name} Nº{info.id}{" "}
           </p>
@@ -95,11 +96,9 @@ export default function InfoPokemon({ info }: InfoPokemonProps) {
               </div>
             </div>
           </div>
-          <Button />
+          <Button isExplorer={false}/>
         </div>
-      ) : (
-        <img width="100%" src="/assets/getting_ready.gif" />
-      )}
+    </Loading>
     </main>
   );
 }

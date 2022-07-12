@@ -4,8 +4,9 @@ import { Header } from "../components/Header";
 import { GetPokemonsProvider } from "../hooks/useGetPokemons";
 import "react-toastify/dist/ReactToastify.min.css";
 import { ToastContainer } from "react-toastify";
+import { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps } : AppProps) {
   return (
     <GetPokemonsProvider>
       <Header />

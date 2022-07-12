@@ -8,7 +8,7 @@ interface PaginationProps {
   totalItens: number;
   offset: number;
   setOffset: (number: number) => void;
-  getPokemons: (number: number) => void;
+  storeDataAll: (number: number) => void;
 }
 
 const maxItens = 9;
@@ -21,7 +21,7 @@ export function Pagination({
   offset,
   totalItens,
   setOffset,
-  getPokemons,
+  storeDataAll
 }: PaginationProps) {
   const currentPage = offset ? offset / limit + 1 : 1;
 
@@ -30,8 +30,7 @@ export function Pagination({
   const firstPage = Math.max(currentPage - maxLeft, 1);
 
   function onPageChange(page: number) {
-    console.log(page, "kjkkkkkkkkkkkk");
-    getPokemons((page - 1) * limit);
+    storeDataAll((page - 1) * limit);
     setOffset((page - 1) * limit);
   }
 
