@@ -63,7 +63,9 @@ Abra [http://localhost:3000](http://localhost:3000) em seu Navegador e veja o re
 
   - Button
     Esse componente ele recebe uma propriedade isExplorer essa propriedade ela verificará se tenho que chamar a função de busca de todos pokemons, se não só voltara para página inicial.
+
   - CardPokemon
+    Esse componente ele mostra as informações do card em tela ele recebe um pokemon que tem o nome id e img e o tipos de poekmon para renderizalos.
 
   - Footer
     Esse componente é só um componente visual
@@ -72,10 +74,13 @@ Abra [http://localhost:3000](http://localhost:3000) em seu Navegador e veja o re
   - Header
     Esse componente é só um componente visual
     não existe neuma logica, só para ter uma identidade visual melhor.
-    
+
   - InfoBox
+    é um compoente que recebe abilidade do pokemon a altura dele e o peso e utilizamos para mosatrar na tela de mais informações do pokemon.
 
   - Loading
+    esse componente recebe o children que elemento que sera renderizado e um boolean
+    que vai mostra se é para renderizar o componente o imagen de loading.
 
   - Pagination
 
@@ -86,7 +91,9 @@ Abra [http://localhost:3000](http://localhost:3000) em seu Navegador e veja o re
 - Pasta pages
 - arquivo pokemon
   - [id].ts
+    Essa é página onde mostar mais informações do pokemon.
 - index.ts
+  Essa pagina onde renderizamos todos os cards de pokemon e além da paginação.
 
 # Stacks Utilizadas
 
