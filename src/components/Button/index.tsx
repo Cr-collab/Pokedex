@@ -13,6 +13,7 @@ export function Button({isExplorer}){
       storeDataAll(0)
     }
    }
+   
   return(
     <button 
     onClick={() => explorer() }
